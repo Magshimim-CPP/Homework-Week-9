@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 #include <string>
 
 class BSNode
@@ -16,8 +17,8 @@ public:
 	bool isLeaf() const;
 	std::string getData() const;
 	int getCount() const;
-	/***/ getLeft() const;
-	/***/ getRight() const;
+	BSNode* getLeft() const;
+	BSNode* getRight() const;
 
 
 	bool search(std::string val) const;
@@ -29,8 +30,8 @@ public:
 
 private:
 	std::string _data;
-	/***/ _left;
-	/***/ _right;
+	BSNode* _left;
+	BSNode* _right;
 
 	int _count; //for question 1 part B
 	int getCurrNodeDistFromInputNode(const BSNode* node) const; //auxiliary function for getDepth
