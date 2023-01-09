@@ -23,10 +23,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="BSNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BSNode.cpp">
+    <ClCompile Include="Test1BasicBST.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

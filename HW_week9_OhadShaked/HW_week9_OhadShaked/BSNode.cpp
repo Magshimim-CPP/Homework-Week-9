@@ -7,9 +7,9 @@ Output: none
 */
 BSNode::BSNode(std::string data)
 {
-	_data = data;
-	_left = nullptr;
-	_right = nullptr;
+	this->_data = data;
+	this->_left = nullptr;
+	this->_right = nullptr;
 	this->_count = 1;
 }
 
@@ -33,10 +33,10 @@ Output: *this (BSNode&)
 */
 BSNode& BSNode::operator=(const BSNode& other)
 {
-	_data = other._data;
-	_left = other._left;
-	_right = other._right;
-	_count = other._count;
+	this->_data = other._data;
+	this->_left = other._left;
+	this->_right = other._right;
+	this->_count = other._count;
 	return *this;
 }
 
@@ -47,8 +47,41 @@ Output: none
 */
 BSNode::~BSNode() {}
 
+/*
+Function to insert a given value into the BS tree (or increase it's _count field, if an object with the same value already exsist's).
+Input: const std::string value
+Output: none
+*/
 void BSNode::insert(const std::string value)
 {
+	if (value == this->_data) //checking if the requested value already exist in the current node, if it does, adding 1 to this BSNode object value's _count field.
+	{
+		this->_count++;
+	}
+
+	else if (value > this->_data) //if the requested value is larger then the current BSNode object's value, going to the right.
+	{
+		if (this->_right == nullptr) //if there is no son to the right, adding the value (in the right spot).
+		{
+			this->_right = new BSNode(value);
+		}
+		else //if there is already a son to the right, calling the function again, with the right son's node as 'this'.
+		{
+			this->_right->insert(value);
+		}
+	}
+
+	else if (value < this->_data) //if the requested value is smaller then the current BSNode object's value, going to the left.
+	{
+		if (this->_left == nullptr) //if there is no son to the left, adding the value (in the left spot).
+		{
+			this->_left = new BSNode(value);
+		}
+		else //if there is already a son to the left, calling the function again, with the left son's node as 'this'.
+		{
+			this->_left->insert(value);
+		}
+	}
 	
 }
 
