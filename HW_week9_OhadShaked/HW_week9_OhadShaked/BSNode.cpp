@@ -135,9 +135,31 @@ int BSNode::getCount() const
 	return this->_count;
 }
 
+/*
+Function to search whether or not a given value already exists in one of the tree nodes (bool).
+Input: std::string val
+Output: true/false (bool)
+*/
 bool BSNode::search(std::string val) const
 {
-	return true;
+	bool exists = false; //setting to false at the start of the function (not found).
+
+	if (this->_data == val) //if the current node's data matches the requested data, a node with this value exist, returning true.
+	{
+		return true;
+	}
+
+	if (this->_left) //if the current BSNode has a son to the left, calling the function again with the left son as 'this'.
+	{
+		exists = this->_left->search(val);
+	}
+
+	if (this->_right && !exists) //if the current BSNode has a son to the right, and a BSNode with the same value wasn't already found, calling the function again with the right son as 'this'.
+	{
+		exists = this->_right->search(val);
+	}
+
+	return exists; //returning the result.
 }
 
 int BSNode::getHeight() const
