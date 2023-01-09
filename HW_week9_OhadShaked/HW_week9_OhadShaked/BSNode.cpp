@@ -26,6 +26,11 @@ BSNode::BSNode(const BSNode& other)
 	this->_count = other._count;
 }
 
+/*
+Function for operator overloading on '=' to copy 'other's' BSNode values to 'this' BSNode (BSNode&).
+Input: const BSNode& other
+Output: *this (BSNode&)
+*/
 BSNode& BSNode::operator=(const BSNode& other)
 {
 	_data = other._data;
@@ -47,26 +52,51 @@ void BSNode::insert(const std::string value)
 	
 }
 
+/*
+Const function, that checks if the current BSNode object is a leaf (no sons) (bool).
+Input: none
+Output: true/false (bool).
+*/
 bool BSNode::isLeaf() const
 {
 	return !(this->getLeft() || this->getRight());
 }
 
+/*
+Const 'get' function that returns the '_left' field of an BSNode object (BSNode*).
+Input: none
+Output: this->_left (BSNode*).
+*/
 BSNode* BSNode::getLeft() const
 {
 	return this->_left;
 }
 
+/*
+Const 'get' function that returns the '_right' field of an BSNode object (BSNode*).
+Input: none
+Output: this->_right (BSNode*).
+*/
 BSNode* BSNode::getRight() const
 {
 	return this->_right;
 }
 
+/*
+Const 'get' function that returns the '_data' field of an BSNode object (std::string).
+Input: none
+Output: this->_data (std::string).
+*/
 std::string BSNode::getData() const
 {
 	return this->_data;
 }
 
+/*
+Const 'get' function that returns the '_count' field of an BSNode object (int).
+Input: none
+Output: this->_count (int).
+*/
 int BSNode::getCount() const
 {
 	return this->_count;
