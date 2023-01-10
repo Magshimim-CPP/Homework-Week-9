@@ -21,9 +21,15 @@ Output: none
 BSNode::BSNode(const BSNode& other)
 {
 	this->_data = other._data;
-	this->_left = other._left;
-	this->_right = other._right;
 	this->_count = other._count;
+	if (other._right) //checking if the currently copied node has a son to the right. if it does, creating a new object for the '_right' field of the current node, using *other._right.
+	{
+		this->_right = new BSNode(*other._right);
+	}
+	if (other._left) //checking if the currently copied node has a son to the left. if it does, creating a new object for the '_left' field of the current node, using *other._left.
+	{
+		this->_left = new BSNode(*other._left);
+	}
 }
 
 /*
@@ -34,9 +40,15 @@ Output: *this (BSNode&)
 BSNode& BSNode::operator=(const BSNode& other)
 {
 	this->_data = other._data;
-	this->_left = other._left;
-	this->_right = other._right;
 	this->_count = other._count;
+	if (other._right) //checking if the currently copied node has a son to the right. if it does, creating a new object for the '_right' field of the current node, using *other._right.
+	{
+		this->_right = new BSNode(*other._right);
+	}
+	if (other._left) //checking if the currently copied node has a son to the left. if it does, creating a new object for the '_left' field of the current node, using *other._left.
+	{
+		this->_left = new BSNode(*other._left);
+	}
 	return *this;
 }
 
@@ -162,9 +174,33 @@ bool BSNode::search(std::string val) const
 	return exists; //returning the result.
 }
 
+/*
+Const 'get' function that returns the hight of a tree from the given BSNode (longest route below) (int).
+Input: none
+Output: the hight of a tree from the given BSNode (int).
+*/
 int BSNode::getHeight() const
 {
-	return true;
+	//setting 2 count variable (for each route option, left/right). setting their starting value to 1 because we are starting from the head.
+	int LeftCount = 1;
+	int RightCount = 1;
+
+	if (!this->isLeaf()) //checking if the current node is a leaf or not.
+	{
+		if (this->_right) //if the current node has a son to the right, calling the function again on the right son, and adding the return value to RightCount.
+		{
+			RightCount += this->_right->getHeight();
+
+		}
+
+		if (this->_left) //if the current node has a son to the left, calling the function again on the left son, and adding the return value to LeftCount.
+		{
+			LeftCount += this->_left->getHeight();
+
+		}
+	}
+
+	return ((LeftCount > RightCount) ? LeftCount : RightCount); //returning the larger count (hight = longest route below the given root)
 }
 
 /*
