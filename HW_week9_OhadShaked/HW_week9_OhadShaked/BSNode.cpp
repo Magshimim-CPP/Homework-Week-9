@@ -1,5 +1,7 @@
 #include "BSNode.h"
 
+using std::cout;
+
 /*
 Constructor function for a BSNode object.
 Input: std::string data
@@ -237,4 +239,24 @@ int BSNode::getCurrNodeDistFromInputNode(const BSNode* node) const
 		}
 	}
 	return count; //returning the result.
+}
+
+/*
+Const function that print's the values of the tree.
+Input: none
+Output: none
+*/
+void BSNode::printNodes() const
+{
+	if (this->_right) //if the current node has a child to the right, calling the function again with the right child as 'this'.
+	{
+		this->_right->printNodes();
+	}
+
+	cout << this->_data << "  "; //printing the data of the node.
+
+	if (this->_left) //if the current node has a child to the left, calling the function again with the left child as 'this'.
+	{
+		this->_left->printNodes();
+	}
 }
