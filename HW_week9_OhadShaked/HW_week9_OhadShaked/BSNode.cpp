@@ -59,7 +59,17 @@ Destructor function for a BSNode object.
 Input: none
 Output: none
 */
-BSNode::~BSNode() {}
+BSNode::~BSNode()
+{
+	if (this->_right)
+	{
+		delete this->_right;
+	}
+	if (this->_left)
+	{
+		delete this->_left;
+	}
+}
 
 /*
 Function to insert a given value into the BS tree (or increase it's _count field, if an object with the same value already exsist's).
@@ -106,7 +116,7 @@ Output: true/false (bool).
 */
 bool BSNode::isLeaf() const
 {
-	return !(this->getLeft() || this->getRight());
+	return !(this->_left || this->_right);
 }
 
 /*
@@ -224,17 +234,17 @@ int BSNode::getCurrNodeDistFromInputNode(const BSNode* node) const
 {
 	int count = 1; //setting int 'count' variable for the depth.
 
-	if (this->getData() != node->getData()) //checking if the current node matches with the requested node.
+	if (this->_data != node->_data) //checking if the current node matches with the requested node.
 	{
-		if (this->getLeft()) //checking if the current BSNode has a son on the left.
+		if (this->_left) //checking if the current BSNode has a son on the left.
 		{
-			count += this->getLeft()->getCurrNodeDistFromInputNode(node);
+			count += this->_left->getCurrNodeDistFromInputNode(node);
 		}
 
-		else if (this->getRight()) //checking if the current BSNode has a son on the right.
+		else if (this->_right) //checking if the current BSNode has a son on the right.
 		{
 
-			count += this->getRight()->getCurrNodeDistFromInputNode(node);
+			count += this->_right->getCurrNodeDistFromInputNode(node);
 
 		}
 	}
