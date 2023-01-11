@@ -134,7 +134,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BSNode.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Test3BSTreeUtils.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

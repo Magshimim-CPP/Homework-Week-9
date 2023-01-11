@@ -222,7 +222,7 @@ Output: the depth of a node from the tree's root (int).
 */
 int BSNode::getDepth(const BSNode& root) const
 {
-	return (root.getCurrNodeDistFromInputNode(this));
+	return (root.getCurrNodeDistFromInputNode(this) - 1);
 }
 
 /*
@@ -236,16 +236,16 @@ int BSNode::getCurrNodeDistFromInputNode(const BSNode* node) const
 
 	if (this->_data != node->_data) //checking if the current node matches with the requested node.
 	{
-		if (this->_left) //checking if the current BSNode has a son on the left.
-		{
-			count += this->_left->getCurrNodeDistFromInputNode(node);
-		}
-
-		else if (this->_right) //checking if the current BSNode has a son on the right.
+		if (this->_right && node->_data > this->_data) //checking if the current BSNode has a son on the right.
 		{
 
 			count += this->_right->getCurrNodeDistFromInputNode(node);
 
+		}
+
+		if (this->_left && node->_data < this->_data) //checking if the current BSNode has a son on the left.
+		{
+			count += this->_left->getCurrNodeDistFromInputNode(node);
 		}
 	}
 	return count; //returning the result.
