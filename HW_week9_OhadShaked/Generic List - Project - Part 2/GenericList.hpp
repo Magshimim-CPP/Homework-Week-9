@@ -11,23 +11,23 @@
 //										   //
 /////////////////////////////////////////////
 
-/* complete code here */
+template <typename T>
 class GenericNode
 {
 public:
-	GenericNode(/* complete code here */ item);
+	GenericNode(T item);
 
 	// getters
-	/* complete code here */ get_next() const;
-	/* complete code here */ get_item();
+	GenericNode<T>* get_next() const;
+	T& get_item();
 
 	// setters
-	void set_next(/* complete code here */ next);
-	void set_item(/* complete code here */ new_item);
+	void set_next(GenericNode<T>* next);
+	void set_item(T new_item);
 
 private:
-	/* complete code here */ _item;
-	GenericNode</* complete code here */>* _next;
+	T _item;
+	GenericNode<T>* _next;
 
 };
 
@@ -40,7 +40,7 @@ private:
 //										   //
 /////////////////////////////////////////////
 
-/* complete code here */
+template <typename T>
 class GenericList
 {
 public:
@@ -49,16 +49,16 @@ public:
 
 	// getters
 
-	/* complete code here */ get_first() const;
+	GenericNode<T>* get_first() const;
 
 	// setters
-	void set_first(/* complete code here */ first);
+	void set_first(GenericNode<T>* first);
 
 	// adds a Device object to the end of the list
-	void add(/* complete code here */ device_to_add);
+	void add(const T device_to_add);
 
 private:
-	GenericNode</* complete code here */>* _first;
+	GenericNode<T>* _first;
 };
 
 /////////////////////////////////////////////
@@ -70,32 +70,32 @@ private:
 //										   //
 /////////////////////////////////////////////
 
-template<class T>
+template <typename T>
 GenericNode<T>::GenericNode(const T item)
 {
 	this->_item = item;
 	this->_next = nullptr;
 }
 
-template<class T>
+template <typename T>
 GenericNode<T>* GenericNode<T>::get_next() const
 {
 	return this->_next;
 }
 
-template<class T>
+template <typename T>
 T& GenericNode<T>::get_item()
 {
 	return _item;
 }
 
-template<class T>
+template <typename T>
 void GenericNode<T>::set_next(GenericNode<T>* next)
 {
 	this->_next = next;
 }
 
-template<class T>
+template <typename T>
 void GenericNode<T>::set_item(const T new_item)
 {
 	this->_item = new_item;
